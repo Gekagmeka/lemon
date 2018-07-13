@@ -346,3 +346,83 @@ nav{
   color: #555555;
   letter-spacing: -0.025em;
 }
+
+
+
+
+
+/*=================== Burger button ===================*/
+.burger-button{
+  width: 20px;
+  height: 21px;
+  position: absolute;
+  top: 40px;
+  right: 30px;
+  display: none; /*кнопка скрыта, когда ширина большая (больше в нашем случае, чем 425px)*/
+}
+
+.serif{
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+
+  /*для анимации в дальнейшем укажем время анимации*/
+  transition:
+              opacity 0.2s ease-in,
+              transform 0.2s ease-in;
+
+  /*определим точку вращения (смещение точки вращения)*/
+  transform-origin: 0 50%;
+}
+.serif:nth-child(2){
+  top: 9px;
+}
+.serif:nth-child(3){
+  top: auto;
+  bottom: 0;
+}
+
+/*добавим анимацию при активной кнопке burger-button*/
+.burger-button.active .serif:nth-child(2){
+  transform: translate(100px, 0); /*вторая полоска уезжает вправо на 100px по оси ОХ, когда кнопка активна*/
+  opacity: 0; /*при нажатии на кнопку - вторая полоска пропадает плавно*/
+}
+.burger-button.active .serif:nth-child(1){ /*или просто :first-child*/
+  transform: rotate(45deg);
+  top: 2px;
+}
+.burger-button.active .serif:nth-child(3){
+  transform: rotate(-45deg);
+  bottom: 2px;
+}
+
+
+
+/*======================= media =====================*/
+@media screen and (max-width: 1024px){
+
+}
+
+@media screen and (max-width: 720px){
+  .burger-button{
+    display: block;/*кнопка появится при уменьшении экрана до 425px и ниже*/
+  }
+  .header-content nav{
+    position: fixed;
+    max-width: 200px;
+    display: none; /*сначала скрытые*/
+  }
+  .header-content nav.active{
+    display: block; /*станут открытыми*/
+  }
+  .menu li {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 375px){
+
+}
